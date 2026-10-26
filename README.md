@@ -28,6 +28,7 @@ arquitetura-cloud-segura/
 │   ├── monitoramento-justificativa.md
 │   ├── rede-e-diagrama.md
 │   └── seguranca-acesso.md
+├── justificativa-tecnica.pdf
 └── README.md
 ```
 
@@ -65,7 +66,7 @@ Abra `diagrama/arquitetura-cloud-segura.drawio` no Draw.io/diagrams.net ou em um
 
 O repositório contém:
 1. diagrama editável;
-2. justificativas técnicas;
+2. justificativas técnicas (`justificativa-tecnica.pdf`, que reúne os documentos de `docs/`);
 3. fluxos permitidos e bloqueados;
 4. estratégia de identidade, credenciais e menor privilégio;
 5. estratégia de monitoramento e auditoria.
