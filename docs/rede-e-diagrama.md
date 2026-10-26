@@ -22,10 +22,10 @@ A aplicação é executada dentro de uma Amazon VPC para separar os componentes 
 - **Amazon S3, Secrets Manager, CloudWatch e CloudTrail:** serviços gerenciados AWS representados fora das sub-redes.
 
 ### Sub-redes públicas
-- Application Load Balancer
+- Um único Application Load Balancer associado às sub-redes públicas das duas Availability Zones
 - NAT Gateway
 
-O ALB é o único componente da aplicação que recebe tráfego web originado da internet.
+O ALB é um único recurso lógico associado às sub-redes públicas das duas Availability Zones. A AWS mantém nós do load balancer nas zonas habilitadas, mas arquiteturalmente continua sendo um único Application Load Balancer.
 
 ### Sub-redes privadas de aplicação
 - Backend/API (EC2/ECS)

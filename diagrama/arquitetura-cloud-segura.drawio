@@ -13,17 +13,15 @@
         <mxCell id="aza" value="Availability Zone A" style="swimlane;html=1;rounded=1;startSize=30;" vertex="1" parent="vpc"><mxGeometry x="30" y="60" width="430" height="660" as="geometry"/></mxCell>
         <mxCell id="azb" value="Availability Zone B" style="swimlane;html=1;rounded=1;startSize=30;" vertex="1" parent="vpc"><mxGeometry x="500" y="60" width="430" height="660" as="geometry"/></mxCell>
 
-        <mxCell id="puba" value="Public Subnet A&#xa;10.0.1.0/24" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="aza"><mxGeometry x="25" y="55" width="180" height="260" as="geometry"/></mxCell>
+        <mxCell id="puba" value="Public Subnet A&#xa;10.0.1.0/24&#xa;ALB habilitado" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="aza"><mxGeometry x="25" y="55" width="180" height="260" as="geometry"/></mxCell>
         <mxCell id="appa" value="Private App A&#xa;10.0.11.0/24" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="aza"><mxGeometry x="225" y="55" width="180" height="260" as="geometry"/></mxCell>
         <mxCell id="dba" value="Private DB A&#xa;10.0.21.0/24" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="aza"><mxGeometry x="125" y="360" width="180" height="220" as="geometry"/></mxCell>
 
-        <mxCell id="pubb" value="Public Subnet B&#xa;10.0.2.0/24" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="azb"><mxGeometry x="25" y="55" width="180" height="260" as="geometry"/></mxCell>
+        <mxCell id="pubb" value="Public Subnet B&#xa;10.0.2.0/24&#xa;ALB habilitado" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="azb"><mxGeometry x="25" y="55" width="180" height="260" as="geometry"/></mxCell>
         <mxCell id="appb" value="Private App B&#xa;10.0.12.0/24" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="azb"><mxGeometry x="225" y="55" width="180" height="260" as="geometry"/></mxCell>
         <mxCell id="dbb" value="Private DB B&#xa;10.0.22.0/24" style="swimlane;html=1;rounded=1;startSize=35;" vertex="1" parent="azb"><mxGeometry x="125" y="360" width="180" height="220" as="geometry"/></mxCell>
-
-        <mxCell id="albA" value="ALB&#xa;HTTPS 443" style="rounded=1;html=1;fontStyle=1;" vertex="1" parent="puba"><mxGeometry x="25" y="70" width="130" height="65" as="geometry"/></mxCell>
+        <mxCell id="alb" value="Application Load Balancer&#xa;ÚNICO - HTTPS 443&#xa;Subnets públicas A + B" style="rounded=1;html=1;fontStyle=1;" vertex="1" parent="vpc"><mxGeometry x="365" y="95" width="240" height="80" as="geometry"/></mxCell>
         <mxCell id="natA" value="NAT Gateway" style="rounded=1;html=1;" vertex="1" parent="puba"><mxGeometry x="25" y="165" width="130" height="55" as="geometry"/></mxCell>
-        <mxCell id="albB" value="ALB&#xa;HTTPS 443" style="rounded=1;html=1;fontStyle=1;" vertex="1" parent="pubb"><mxGeometry x="25" y="70" width="130" height="65" as="geometry"/></mxCell>
 
         <mxCell id="apiA" value="Backend/API&#xa;SG-APP" style="rounded=1;html=1;fontStyle=1;" vertex="1" parent="appa"><mxGeometry x="25" y="80" width="130" height="70" as="geometry"/></mxCell>
         <mxCell id="apiB" value="Backend/API&#xa;SG-APP" style="rounded=1;html=1;fontStyle=1;" vertex="1" parent="appb"><mxGeometry x="25" y="80" width="130" height="70" as="geometry"/></mxCell>
@@ -41,10 +39,9 @@
         <mxCell id="flow" value="VPC Flow Logs&#xa;Tráfego aceito/rejeitado" style="rounded=1;html=1;" vertex="1" parent="1"><mxGeometry x="1630" y="690" width="170" height="70" as="geometry"/></mxCell>
 
         <mxCell id="e1" value="HTTPS 443" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="internet" target="waf"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e2" value="Protegido por WAF" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="waf" target="albA"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e2b" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="waf" target="albB"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e3" value="TCP 8080" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="albA" target="apiA"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e3b" value="TCP 8080" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="albB" target="apiB"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" value="Protegido por WAF" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="waf" target="alb"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="TCP 8080" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="alb" target="apiA"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3b" value="TCP 8080" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="alb" target="apiB"><mxGeometry relative="1" as="geometry"/></mxCell>
         <mxCell id="e4" value="PostgreSQL 5432" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="apiA" target="rds"><mxGeometry relative="1" as="geometry"/></mxCell>
         <mxCell id="e4b" value="PostgreSQL 5432" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="apiB" target="rds"><mxGeometry relative="1" as="geometry"/></mxCell>
         <mxCell id="e5" value="HTTPS 443" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="apiA" target="vpce"><mxGeometry relative="1" as="geometry"/></mxCell>

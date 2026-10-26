@@ -52,7 +52,7 @@ Mantêm o RDS isolado e acessível somente pela aplicação.
 Adiciona uma camada de proteção para requisições web antes do processamento pelo backend.
 
 ### Application Load Balancer
-Recebe HTTPS e distribui as requisições para a camada privada de aplicação.
+É um único load balancer associado às sub-redes públicas das duas Availability Zones. Recebe HTTPS e distribui as requisições para os backends privados disponíveis nas duas zonas.
 
 ### NAT Gateway
 Permite saída controlada dos recursos privados quando um serviço externo precisa ser acessado, sem oferecer entrada pública para esses recursos.

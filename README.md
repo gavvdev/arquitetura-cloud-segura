@@ -41,7 +41,7 @@ arquitetura-cloud-segura/
 - Internet Gateway
 - NAT Gateway
 - AWS WAF
-- Application Load Balancer
+- Um único Application Load Balancer associado às sub-redes públicas das duas Availability Zones
 - Backend/API em EC2 ou ECS
 - Amazon RDS PostgreSQL
 - Amazon S3 privado
